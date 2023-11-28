@@ -26,7 +26,7 @@ def countMatchingTracks(playlist, trackName):
             matchingCount += 1
     return matchingCount
 
-def recommend_top3_playlists(trackName):
+def recommendPlaylists(trackName):
     playlist_counts = {}
 
     for index, row in ds1.iterrows():
@@ -64,7 +64,7 @@ def recommend_playlist():
         recommendations = []
 
         recommendations = getRelatedPlaylists(songs)
-        top3_playlists = recommend_top3_playlists(recommendations)
+        top3_playlists = recommendPlaylists(recommendations)
 
         response_data = {
             'playlist_ids': top3_playlists,
