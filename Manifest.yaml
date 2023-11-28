@@ -1,0 +1,219 @@
+metadata:
+  creationTimestamp: "2023-11-28T03:05:08Z"
+  generation: 10
+  managedFields:
+  - apiVersion: argoproj.io/v1alpha1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        .: {}
+        f:destination:
+          .: {}
+          f:namespace: {}
+          f:server: {}
+        f:project: {}
+        f:source:
+          .: {}
+          f:path: {}
+          f:repoURL: {}
+        f:syncPolicy:
+          .: {}
+          f:automated:
+            .: {}
+            f:prune: {}
+      f:status:
+        .: {}
+        f:health: {}
+        f:summary: {}
+        f:sync:
+          .: {}
+          f:comparedTo:
+            .: {}
+            f:destination: {}
+            f:source: {}
+    manager: argocd-server
+    operation: Update
+    time: "2023-11-28T03:05:08Z"
+  - apiVersion: argoproj.io/v1alpha1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:controllerNamespace: {}
+        f:health:
+          f:status: {}
+        f:history: {}
+        f:operationState:
+          .: {}
+          f:finishedAt: {}
+          f:message: {}
+          f:operation:
+            .: {}
+            f:initiatedBy:
+              .: {}
+              f:automated: {}
+            f:retry:
+              .: {}
+              f:limit: {}
+            f:sync:
+              .: {}
+              f:prune: {}
+              f:revision: {}
+          f:phase: {}
+          f:startedAt: {}
+          f:syncResult:
+            .: {}
+            f:resources: {}
+            f:revision: {}
+            f:source:
+              .: {}
+              f:path: {}
+              f:repoURL: {}
+        f:reconciledAt: {}
+        f:resources: {}
+        f:sourceType: {}
+        f:summary:
+          f:images: {}
+        f:sync:
+          f:comparedTo:
+            f:destination:
+              f:namespace: {}
+              f:server: {}
+            f:source:
+              f:path: {}
+              f:repoURL: {}
+          f:revision: {}
+          f:status: {}
+    manager: argocd-application-controller
+    operation: Update
+    time: "2023-11-28T03:05:10Z"
+  name: fernandapereira-recommender
+  namespace: argocd
+  resourceVersion: "2021788"
+  uid: f7e5dc1c-4f76-40e5-a31b-5da17092126f
+spec:
+  destination:
+    namespace: fernandapereira
+    server: https://kubernetes.default.svc
+  project: fernandapereira-project
+  source:
+    path: .
+    repoURL: https://github.com/ferprr/tp2-cloud-computing.git
+  syncPolicy:
+    automated:
+      prune: true
+status:
+  controllerNamespace: argocd
+  health:
+    status: Progressing
+  history:
+  - deployStartedAt: "2023-11-28T03:05:09Z"
+    deployedAt: "2023-11-28T03:05:10Z"
+    id: 0
+    revision: 7c8593a9d0631924d67cd0672c78304b5ab0054f
+    source:
+      path: .
+      repoURL: https://github.com/ferprr/tp2-cloud-computing.git
+  operationState:
+    finishedAt: "2023-11-28T03:05:10Z"
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        automated: true
+      retry:
+        limit: 5
+      sync:
+        prune: true
+        revision: 7c8593a9d0631924d67cd0672c78304b5ab0054f
+    phase: Succeeded
+    startedAt: "2023-11-28T03:05:09Z"
+    syncResult:
+      resources:
+      - group: ""
+        hookPhase: Running
+        kind: PersistentVolumeClaim
+        message: persistentvolumeclaim/project2-pvc-fernandapereira configured
+        name: project2-pvc-fernandapereira
+        namespace: fernandapereira
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Service
+        message: service/fernandapereira-recommender-service configured
+        name: fernandapereira-recommender-service
+        namespace: fernandapereira
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: Deployment
+        message: deployment.apps/fernandapereira-frontend-recommend configured
+        name: fernandapereira-frontend-recommend
+        namespace: fernandapereira
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: Deployment
+        message: deployment.apps/fernandapereira-generator-recommend configured
+        name: fernandapereira-generator-recommend
+        namespace: fernandapereira
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      revision: 7c8593a9d0631924d67cd0672c78304b5ab0054f
+      source:
+        path: .
+        repoURL: https://github.com/ferprr/tp2-cloud-computing.git
+  reconciledAt: "2023-11-28T03:05:10Z"
+  resources:
+  - health:
+      status: Healthy
+    kind: PersistentVolumeClaim
+    name: project2-pvc-fernandapereira
+    namespace: fernandapereira
+    status: Synced
+    version: v1
+  - health:
+      status: Healthy
+    kind: Service
+    name: fernandapereira-recommender-service
+    namespace: fernandapereira
+    status: Synced
+    version: v1
+  - group: apps
+    health:
+      message: 'Waiting for rollout to finish: 0 of 2 updated replicas are available...'
+      status: Progressing
+    kind: Deployment
+    name: fernandapereira-frontend-recommend
+    namespace: fernandapereira
+    status: Synced
+    version: v1
+  - group: apps
+    health:
+      message: 'Waiting for rollout to finish: 0 of 2 updated replicas are available...'
+      status: Progressing
+    kind: Deployment
+    name: fernandapereira-generator-recommend
+    namespace: fernandapereira
+    status: Synced
+    version: v1
+  sourceType: Directory
+  summary:
+    images:
+    - fernandapereira/frontend:0.1
+    - fernandapereira/generator:0.1
+  sync:
+    comparedTo:
+      destination:
+        namespace: fernandapereira
+        server: https://kubernetes.default.svc
+      source:
+        path: .
+        repoURL: https://github.com/ferprr/tp2-cloud-computing.git
+    revision: 7c8593a9d0631924d67cd0672c78304b5ab0054f
+    status: Synced
