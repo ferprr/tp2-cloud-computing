@@ -19,22 +19,14 @@ def getRelatedPlaylists(trackName):
 
     return list(set(relatedPlaylists))
 
-def countMatchingTracks(playlist, trackName):
-    matchingCount = 0
-    for trackName in trackName:
-        if trackName in playlist:
-            matchingCount += 1
-    return matchingCount
-
-def recommendPlaylists(trackName):
+def recommendPlaylists(trackNames):
     playlist_counts = {}
 
     for index, row in ds1.iterrows():
         playlistName = row['pid']
-        playlistTracks = row['trackName'].split(', ')
-        matchingCount = countMatchingTracks(playlistTracks, trackName)
+        playlistTracks = row['track_name'].split(', ')
         matchingCount = 0
-        for trackName in trackName:
+        for trackName in trackNames:
             if trackName in playlistTracks:
                 matchingCount += 1
         if playlistName in playlist_counts:
@@ -52,7 +44,7 @@ app = Flask(__name__)
 
 # Load your recommendation model here
 model = pickle.load(open('./trained_model.pkl', "rb"))
-file_path1 = './Datasets/2023_spotify_ds1.csv'
+file_path1 = '/home/datasets/2023_spotify_ds1.csv'
 ds1 = pd.read_csv(file_path1)
 
 @app.route('/api/recommend', methods=['POST'])
